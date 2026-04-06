@@ -12,7 +12,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const title = url.searchParams.get('title') || '消息推送';
-  const message = url.searchParams.get('message') || '无告警信息';
+  const rawMessage = url.searchParams.get('message');
+  const message = rawMessage ? rawMessage.replace(/@#/g, '\n') : '无告警信息';
   const date = url.searchParams.get('date') || '无时间信息';
 
   const html = `

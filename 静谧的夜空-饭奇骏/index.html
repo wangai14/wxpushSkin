@@ -322,9 +322,10 @@
         // 从 URL 参数读取数据
         function getUrlParams() {
             const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
             return {
                 title: urlParams.get('title') || '消息推送',
-                message: urlParams.get('message') || '无告警信息',
+                message: message ? message.replace(/@#/g, '\n') : '无告警信息',
                 date: urlParams.get('date') || '无时间信息'
             };
         }

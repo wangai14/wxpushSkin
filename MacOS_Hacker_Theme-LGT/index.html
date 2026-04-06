@@ -151,9 +151,10 @@
     <script>
         function getUrlParams() {
             const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
             return {
                 title: urlParams.get('title') || '消息推送',
-                message: urlParams.get('message') || '无告警信息',
+                message: message ? message.replace(/@#/g, '\n') : '无告警信息',
                 date: urlParams.get('date') || '无时间信息'
             };
         }
@@ -186,20 +187,20 @@
                  
                   // 随机大小
                   const size = Math.random() * 3 + 1;
-                  particle.style.width = \`\${size}px\`;
-                  particle.style.height = \`\${size}px\`;
+                  particle.style.width = `${size}px`;
+                  particle.style.height = `${size}px`;
                  
                   // 随机颜色
                   const randomColor = colors[Math.floor(Math.random() * colors.length)];
                   particle.style.background = randomColor;
                  
                   // 随机位置
-                  particle.style.left = \`\${Math.random() * 100}%\`;
-                  particle.style.top = \`\${Math.random() * 100}%\`;
+                  particle.style.left = `${Math.random() * 100}%`;
+                  particle.style.top = `${Math.random() * 100}%`;
                  
                   // 随机动画延迟和持续时间
-                  particle.style.animationDelay = \`\${Math.random() * 20}s\`;
-                  particle.style.animationDuration = \`\${20 + Math.random() * 15}s\`;
+                  particle.style.animationDelay = `${Math.random() * 20}s`;
+                  particle.style.animationDuration = `${20 + Math.random() * 15}s`;
                  
                   particlesContainer.appendChild(particle);
               }

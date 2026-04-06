@@ -3,7 +3,8 @@ export default {
       // 从URL参数中获取数据
       const url = new URL(request.url);
       const title = url.searchParams.get('title') || '消息推送';
-      const message = url.searchParams.get('message') || '无告警信息';
+      const rawMessage = url.searchParams.get('message');
+      const message = rawMessage ? rawMessage.replace(/@#/g, '\n') : '无告警信息';
       const date = url.searchParams.get('date') || '无时间信息';
       const html = `
 <!DOCTYPE html>
